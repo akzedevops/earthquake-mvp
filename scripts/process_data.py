@@ -3,13 +3,13 @@ import argparse
 import os
 
 def process(input_csv, output_csv):
-    # Ensure directory exists
+    # Ensure output directory exists
     output_dir = os.path.dirname(output_csv)
     if output_dir and not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
     df = pd.read_csv(input_csv)
-    # Robust timestamp parsing
+    # Robust timestamp parsing for both microseconds and non-microseconds
     df["date"] = pd.to_datetime(df["time_iso"], format="mixed").dt.date
     stats = {
         "count": len(df),

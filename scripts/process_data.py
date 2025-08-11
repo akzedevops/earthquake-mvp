@@ -9,7 +9,7 @@ def process(input_csv, output_csv):
         os.makedirs(output_dir)
 
     df = pd.read_csv(input_csv)
-    df['date'] = pd.to_datetime(df['time_iso']).dt.date
+    df['date'] = pd.to_datetime(df['time_iso'], format='ISO8601').dt.date
     stats = {
         "count": len(df),
         "avg_magnitude": df["magnitude"].mean(),

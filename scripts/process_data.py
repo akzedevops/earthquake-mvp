@@ -9,8 +9,7 @@ def process(input_csv, output_csv):
         os.makedirs(output_dir)
 
     df = pd.read_csv(input_csv)
-    # Robust timestamp parsing for both microseconds and non-microseconds
-    df["date"] = pd.to_datetime(df["time_iso"], format="mixed").dt.date
+    df['date'] = pd.to_datetime(df['time_iso']).dt.date
     stats = {
         "count": len(df),
         "avg_magnitude": df["magnitude"].mean(),

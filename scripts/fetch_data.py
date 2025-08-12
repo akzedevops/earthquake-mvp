@@ -16,10 +16,10 @@ def fetch_and_save(output_csv):
     with open("temp_eq.csv", "wb") as f:
         f.write(r.content)
     df = pd.read_csv("temp_eq.csv")
-    df.rename(columns={"mag": "magnitude"}, inplace=True)
+    df.rename(columns={"mag": "magnitude", "depth": "depth_km"}, inplace=True)
     # Keep relevant columns and convert time to ISO format
     df["time_iso"] = pd.to_datetime(df["time"]).dt.strftime("%Y-%m-%dT%H:%M:%S")
-    df = df[["id", "time_iso", "magnitude", "place", "latitude", "longitude", "depth"]]
+    df = df[["id", "time_iso", "magnitude", "place", "latitude", "longitude", "depth_km"]]
     df.to_csv(output_csv, index=False)
     os.remove("temp_eq.csv")
 

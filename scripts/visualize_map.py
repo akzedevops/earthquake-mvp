@@ -4,12 +4,14 @@ import argparse
 
 def visualize(input_csv, output_html):
     df = pd.read_csv(input_csv)
-    fig = px.scatter_mapbox(
+    # Handle negative magnitudes for sizing
+    df['magnitude_size'] = df['magnitude'].clip(lower=0.1)  # Minimum size of 0.1
+    fig = px.scatter_map(
         df,
         lat="latitude",
         lon="longitude",
         color="magnitude",
-        size="magnitude",
+        size="magnitude_size",
         hover_name="place",
         hover_data=["time_iso", "depth_km"],
         color_continuous_scale="Viridis",
@@ -17,7 +19,6 @@ def visualize(input_csv, output_html):
         zoom=1,
         height=600,
     )
-    fig.update_layout(mapbox_style="carto-positron")
     fig.write_html(output_html)
     print(f"Map saved to {output_html}")
 

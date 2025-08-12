@@ -1,4 +1,4 @@
-id,time_iso,magnitude,place,latitude,longitude,depth
+id,time_iso,magnitude,place,latitude,longitude,depth_km
 ci41258912,2025-08-12T03:39:23,2.22,"21 km ESE of Little Lake, CA",35.8598333,-117.6921667,5.15
 ci41258904,2025-08-12T03:36:48,0.93,"12 km SW of Searles Valley, CA",35.6813333,-117.4788333,7.22
 ci41258896,2025-08-12T03:30:51,2.15,"9 km SSW of Idyllwild, CA",33.6593333,-116.7416667,13.64

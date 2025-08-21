@@ -12,4 +12,4 @@ visualize:
 	$(PYTHON) scripts/visualize_map.py --input data/earthquakes_last30.csv --output maps/earthquakes_map.html
 
 test:
-	pytest -q
+	PYTHONPATH=. $(PYTHON) -m pytest tests/ -q

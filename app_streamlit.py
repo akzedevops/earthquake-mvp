@@ -25,14 +25,17 @@ st.metric("Total Earthquakes", len(filtered))
 if "magnitude" in filtered and filtered["magnitude"].notna().any():
     st.metric("Average Magnitude", f"{filtered['magnitude'].mean():.2f}")
 
+# Handle negative magnitudes for size (make minimum size 0.1)
+filtered['size_magnitude'] = filtered['magnitude'].clip(lower=0.1)
+
 fig = px.scatter_mapbox(
     filtered,
     lat="latitude",
     lon="longitude",
     color="magnitude",
-    size="magnitude",
+    size="size_magnitude",
     hover_name="place",
-    hover_data=["time_iso", "depth_km"],
+    hover_data=["time_iso", "depth"],
     color_continuous_scale="Viridis",
     size_max=12,
     zoom=1,

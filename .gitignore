@@ -22,3 +22,4 @@ build/
 
 # App artifacts
 maps/*.html
+temp_eq.csv
